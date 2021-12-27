@@ -50,14 +50,9 @@ void TestSwapWithNullptr()
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     MyUniquePointer<Entity> null_ptr;
     entityPointer1.swap(null_ptr);
+    assert(!entityPointer1);
+    assert(null_ptr);
 
-    if (null_ptr && !entityPointer1)
-    {
-        assert(1==1);
-    }
-    else {
-        assert(1 == 2);
-    }
 
 }
 
@@ -66,14 +61,8 @@ void TestBoolOperator()
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     MyUniquePointer<Entity> null_ptr;
     entityPointer1.swap(null_ptr);
-
-    if (null_ptr && !entityPointer1)
-    {
-        assert(1 == 1);
-    }
-    else {
-        assert(1 == 2);
-    }
+    assert(!entityPointer1);
+    assert(null_ptr);
 }
 
 void TestRelease()

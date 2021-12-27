@@ -19,7 +19,7 @@ namespace thebettersmartpointer
 	class MyUniquePointer
 	{
 	private:
-		T* data;
+		T* data=nullptr;
 	public:
 		//Die vom compiler generierten copy constructor und copy assigment löschen um die probleme zu vermeiden die oben erwähnt worden sind
 		MyUniquePointer(MyUniquePointer const&) = delete;
