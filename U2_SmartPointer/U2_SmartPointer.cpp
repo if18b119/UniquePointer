@@ -21,11 +21,10 @@ public:
 
 void TestWorkingSmartPointer()
 {
+    int i = 0;
     MyUniquePointer<Entity> entityPointer(new Entity(1));
-    MyUniquePointer<std::string> stringPointer(new std::string("Hello World"));
-
-    assert(entityPointer->GetID()==1);
-    assert(stringPointer->c_str(), "Hello World");
+    MyUniquePointer<std::string> stringPointer(new std::string("Hello World"));   
+    assert(*stringPointer.get() == "Hello World");
 }
 
 void TestSwap()
@@ -43,7 +42,7 @@ void TestSwapWithInSelf()
 {
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     entityPointer1.swap(entityPointer1);
-    assert(entityPointer1->GetID(), 1);
+    assert(entityPointer1->GetID() == 1);
 }
 
 void TestSwapWithNullptr()
@@ -81,7 +80,7 @@ void TestRelease()
 {
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     MyUniquePointer<Entity> entityPointer12(entityPointer1.release());
-    assert(entityPointer12.get()->GetID() == 1);
+    assert(entityPointer12->GetID() == 1);
     assert(!entityPointer1);
 }
 
@@ -89,7 +88,7 @@ void TestMoveConstructor()
 {
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     MyUniquePointer<Entity> entityPointer12 (std::move(entityPointer1));
-    assert(entityPointer12.get()->GetID()== 1);
+    assert(entityPointer12->GetID()== 1);
     assert(!entityPointer1);
 }
 
@@ -97,7 +96,7 @@ void TestMoveAssignment()
 {
     MyUniquePointer<Entity> entityPointer1(new Entity(1));
     MyUniquePointer<Entity> entityPointer12 = std::move(entityPointer1);
-    assert(entityPointer12.get()->GetID() == 1);
+    assert(entityPointer12->GetID() == 1);
     assert(!entityPointer1);
 }
 
